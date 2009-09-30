@@ -3,9 +3,6 @@ gem "data_objects", "= 0.10.0"
 require "integrity"
 
 Integrity.new(
-  # Edit this! ex: http://falling-flower-54.heroku.com
-  #:base_uri => nil,
-
   # Uncomment to setup a password
   # :use_basic_auth => true,
   # :admin_username => "admin",
