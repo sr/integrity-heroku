@@ -1,0 +1,30 @@
+= Bob the Builder
+
+Given a Buildable object with a determined API (described in it's documentation), 
+Bob will, when called like:
+
+    Bob.build(buildable, commit_id) # or Bob.build(buildable, [commit_id, commit_id, ...])
+
+or from your buildable (if you are using the Bob::Buildable mixin provided) as:
+
+    buildable.build(commit_id) # or buildable.build([commit_id, commit_id, ...])
+
+1. Checkout the buildable on the specified commit
+2. Call <tt>Buildable#start_building</tt>
+3. Run the script provided in <tt>Buildable#build_script</tt> in the buildable.
+4. When the build process finishes, it will call <tt>Buildable#finish_building</tt> with
+   the commit_id, the build status (true if the script returns a status code
+   of 0, false otherwise), and a string with the build output (both STDOUT and STDERR).
+
+If you pass an array of commits, the steps 1-4 will be repeated for each commit provided,
+in order.
+
+== Do I need this?
+
+Probably not. Check out integrity[http://integrityapp.com] for a full fledged
+automated CI server, which is what most people need.
+
+== Credits
+
+Authors:: Nicolas Sanguinetti (foca[http://github.com/foca]) and Simon Rozet (sr[http://github.com/sr])
+License:: MIT (Check LICENSE for details)

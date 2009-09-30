@@ -1,0 +1,22 @@
+- if @projects.empty?
+  .blank_slate
+    %p None yet, huh?
+    %h1
+      Why don't you
+      = succeed "?" do
+        %a{ :href => path("/new") } create your first project
+- else
+  %ul#projects
+    - @projects.each do |project|
+      %li{ :class => cycle("even", "odd") + ' ' + project.status.to_s }
+        %a{ :href => project_path(project) }&= project.name
+        .meta
+          - case project.status
+          - when :building
+            Building!
+          - when :blank
+            Never built yet
+          - else
+            = project.human_readable_status
+  %p#new
+    %a{ :href => path("/new") } Add a new project
